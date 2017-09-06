@@ -123,8 +123,10 @@ var initializeMiddleware = function initializeMiddleware (rlOrSO, resources, cal
           console.error('Error initializing middleware');
           console.error(err.stack);
         }
-
-        process.exit(1);
+        //DZ - change to not use process.exit(1), which is very bad practice.
+        //in addition I want to callback the main function with the err so the calling 
+        //code can know that the documenation end-point failed.
+        callback(err);
       }
     }
   });
